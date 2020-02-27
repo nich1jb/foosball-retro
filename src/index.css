@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-#play-button {
+.btn {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
@@ -21,6 +21,7 @@ code {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin: 5px;
 }
 
 .App {

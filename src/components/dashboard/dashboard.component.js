@@ -3,12 +3,28 @@ import MoveDisplay from '../moveDisplay'
 
 export const Dashboard = () => {
   const [moveDisplay, setMoveDisplay] = useState(false)
-  const [randomMove, setRandomMove] = useState(0)
+  const [currentMove, setCurrentMove] = useState(0)
+  const [movesPlayed, setMovesPlayed] = useState([])
 
-  const handleClick = () => {
-    const rand = Math.floor(Math.random() * Math.floor(5))
-    setRandomMove(rand)
+  const play = () => {
+    const move = randomNumber()
+    setMovesPlayed([...movesPlayed, move])
+    setCurrentMove(move)
     setMoveDisplay(true)
+  }
+
+  const randomNumber = () => {
+    return Math.floor(Math.random() * Math.floor(4))
+  }
+
+  const nextMove = () => {
+    let move = randomNumber()
+    while ((move === currentMove || movesPlayed.includes(move)) && movesPlayed.length !== 4) {
+      move = randomNumber()
+    }
+    if (movesPlayed.length === 4) move = 4
+    setMovesPlayed([...movesPlayed, move])
+    setCurrentMove(move)
   }
 
   return (
@@ -16,8 +32,9 @@ export const Dashboard = () => {
       <header>
         <h1>Retro</h1>
       </header>
-      <button type="button" id="play-button" className="btn btn-secondary" onClick={ handleClick }>Play</button>
-      { moveDisplay ? <MoveDisplay move={ randomMove }/> : null }
+      { moveDisplay 
+      ? <MoveDisplay move={ currentMove } nextMove={nextMove}/> 
+      : <button type="button" className="btn" onClick={ play }>Play</button> }
     </div>
   )
 }
