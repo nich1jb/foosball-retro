@@ -44,3 +44,11 @@ code {
 .App-link {
   color: #09d3ac;
 }
+
+.showMoveDisplay {
+  display: block
+}
+
+.hideMoveDisplay {
+  display: none
+}
