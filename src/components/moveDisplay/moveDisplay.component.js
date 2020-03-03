@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 export const MoveDisplay = (props) => {
+  const [buttonClickable, setButtonClickable] = useState(false)
+
   const moves = {
     0: {
       name: 'GOAL',
@@ -36,18 +38,34 @@ export const MoveDisplay = (props) => {
 
   const moveOptions = moves[props.move].options
 
+  const nextMoveClick = () => {
+    setButtonClickable(false)
+    props.nextMove()
+  }
+
+  useEffect(
+    () => {
+      const timer = setTimeout(() => {
+        setButtonClickable(true)
+      }, 60000)
+
+      return () => {
+        clearTimeout(timer)
+      }
+    })
+
   return (
-    <div>
+    <div className="moveDisplay">
       <img src={ moves[props.move].gif } />
-      <h2>{moves[props.move].name}</h2>
+      <h1>{moves[props.move].name}</h1>
       {
         props.move < 4 ?
         <>
           <p>What will you do next?</p>
-          <button className="btn" onClick={props.nextMove}>
+          <button className={`btn clickable-${buttonClickable}`} onClick={nextMoveClick} disabled={!buttonClickable}>
             {moveOptions[0]}
           </button>
-          <button className="btn" onClick={props.nextMove}>
+          <button className={`btn clickable-${buttonClickable}`} onClick={nextMoveClick} disabled={!buttonClickable}>
             {moveOptions[1]}
           </button>
         </> : null

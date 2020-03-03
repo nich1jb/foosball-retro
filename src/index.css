@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
 }
 
 code {
@@ -24,8 +25,42 @@ code {
   margin: 5px;
 }
 
+.clickable-false {
+  opacity: 0.6;
+}
+
+.btn:hover {
+  cursor:pointer;
+ }
+
 .App {
   text-align: center;
+  overflow: hidden;
+}
+
+.App::before {
+  content: "";
+  display: block;
+  position: absolute;
+  margin-left: 0;
+  min-width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.6;
+  background-color: #282c34;
+  }
+
+.App::after {
+  background-image: url('/gifs/bg.jpg');
+  background-size: cover;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
 }
 
 .App-logo {
