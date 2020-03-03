@@ -18,7 +18,7 @@ export const MoveDisplay = (props) => {
     },
     2: {
       name: 'BALL HAS STALLED',
-      options: ['Play the ball again', 'Have a cry'],
+      options: ['Play the ball again', 'Have a cry and do a frustrated spinny boi'],
       actualName: 'Confused/questions',
       gif: '/gifs/ball-stalled.gif'
     },
